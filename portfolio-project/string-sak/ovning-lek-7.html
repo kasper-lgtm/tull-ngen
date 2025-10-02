@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <style>
+      .word
+      {
+        display: inline-block;
+      }
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+     
+    @font-face {
+    font-family: "andy";
+    src: url(../AndyBold.ttf);
+    }
+
+    .home
+      {
+      font-family: andy;
+      color:white;
+      padding-left:10px;
+      background-color: rgb(5, 117, 80);
+      padding-right: 10px;
+      padding-bottom: 5px;
+      padding-top:5px;
+      border-radius: 5px;
+      font-size: 13px;
+      }
+
+      @media (1000px>=width)
+      {
+      .home
+      {
+      padding-left:20px;
+      padding-right: 20px;
+      padding-bottom: 10px;
+      padding-top:10px;
+      font-size: 20px;
+      }
+      #background
+      {
+        width:100%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="word">str&auml;ng 1:</p>
+    <input class="imp" id="imput-1" type="text">
+    <br>
+    <p class="word">str&auml;ng 2:</p>
+    <input class="imp" id="imput-2" type="text">
+    <br>
+    <button class="imp" onclick="sexytime()"> J&auml;mf&#246;r</button>
+    <br>
+    <p id="träff"></p>
+    <a class="home" href="../index.html" >Home</a>
+    <script>
+      
+
+
+      function sexytime()
+      {
+         imp1 = document.getElementById("imput-1").value;
+         imp2 = document.getElementById("imput-2").value;
+         let antal = 0;
+         let finns = false;
+      for(let i = 0; i<imp1.length;i++)
+      {
+        if(imp1[i]==imp2[i])
+      {
+        antal++;
+      }
+
+      }
+      
+      document.getElementById("träff").textContent = antal + " träffar!";
+
+      }
+
+
+    </script>
+  </body>
+</html>

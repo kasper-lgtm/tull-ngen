@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      let final = 0
+      function jämn()
+      {
+        input = document.getElementById("input").value
+        for(final=0; final <= parseInt(input); final+=2)
+        {
+            console.log(final)
+        }
+      }
+      function udda()
+      {
+        input = document.getElementById("input").value
+        for(final=1; final <= parseInt(input); final+=2)
+        {
+            console.log(final)
+        }
+      }
+      
+
+
+
+    </script>
+
+  </head>
+  <body>
+    <input id="input" type="text">
+    <button onclick="jämn()">jämn</button>
+    <button onclick ="udda()">udda</button>
+  </body>
+</html>

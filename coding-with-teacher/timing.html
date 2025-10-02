@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+  </head>
+  <body>
+    <canvas id="rityta" width="600", height="500" style="border: 1px solid black;"></canvas>
+
+    <script>
+      canvas = document.getElementById("rityta");
+      ctx = canvas.getContext("2d");
+      ctx.font = "20px Roboto";
+      
+
+      let lista = [200,200];
+      function run()
+      {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+      tid = Date.now()-starttid;
+      if(tid>1)
+      {
+        lista.push(Math.floor(Math.random()*500));
+        lista.push(Math.floor(Math.random()*500));
+        starttid = Dte.now();
+      }
+      ctx.fillText("TIMING!", 100,100);
+      ctx.fillText(tid/1000,100,200);
+        
+      for(let i =0; i<lista.length; i+=2)
+      {
+        ctx.fillRect(lista[i], lista[i+1], 10, 10);
+      }
+        
+
+
+      requestAnimationFrame(run);
+      }
+
+      starttid = Date.now();
+      run();
+    </script>
+
+
+  </body>
+</html>

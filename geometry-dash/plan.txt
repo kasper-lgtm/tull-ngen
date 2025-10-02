@@ -1,0 +1,11 @@
+1. skapa spikar CHECK
+2. få spikarna att åka till vänster CHECK
+6. gör så att spikarna börjar röra på sig när du trycker på en knapp
+3. skapa spelar boxen CHECK
+4. gör så att spelaren kan hoppa med gravitation CHECK
+5. gör så spelaren dör om den nuddar spikarna CHECK
+---
+6. gör ett sätt att vinna check
+7. gör en platform check
+8. gör bannan längre check
+9. cuben exploderar när den nuddar spik 

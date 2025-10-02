@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <titel>logga in</titel>
+      <script>
+        // skapar ett "hemlight" lösenord
+        let password = "ppman5000";
+        
+        //en funktion
+        function knapptryck()
+        {
+          console.log("du trycker på knappen")
+          //hämta de som står i rutan
+        let innehåll = document.getElementById("textruta").value;
+
+        if(innehåll==password)
+        {
+          //ändra på inehålet i p-taggen med id text
+          document.getElementById("text").textContent = "Det var rätt! Välkomen";
+
+        }
+        else
+        {
+document.getElementById("text").textContent = "det var fel!";
+        }
+        }
+
+      </script>
+  </head>
+  <body>
+      skriv dit lösenord <br>
+      <input id="textruta"> <br>
+      <button id="knapp"  onclick="knapptryck()">logga in</button>
+      <p id="text">
+
+      </p>
+  </body>
+</html>

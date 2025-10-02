@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>geometrodash</title>
+    <style>
+      .spelytan{
+        display: flex;
+        justify-content: center;
+      }
+      .winer{
+        font-size: 100px;
+        color:brown;
+      }
+      .cool
+       {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100px;
+       }
+       button{
+        width: 100px;
+       }
+    </style>
+  </head>
+  <body>
+    <div class="spelytan">    
+      <canvas id="spelyta" width="2000" height="300" style="border: 1px solid black;"></canvas>
+    </div>
+    <div class="cool">
+    <button id="play" onclick="gamestart()">press to play</button>
+    <br>
+    <p>press s to restart</p>
+    <p class="winer" id="you_won"></p>
+    </div>
+
+    
+    <script>
+      canvas = document.getElementById("spelyta");
+      ctx = canvas.getContext("2d");
+      let spikex = 10;
+      let spikey = 25;
+      let spikfart = 0;
+      let rectangle = 275;
+      let rectangle2 = 100;
+      let g  = 0.22;
+      let vy = 0;
+      let falling = false
+      let size = 25;
+      let spel = false
+      let score = 0
+      let block = 1950
+      let line = 1320
+      let alive = false
+      let size4 = size/2
+      death_cube_original = [100, rectangle, size/4, size/4, 100+size/4, rectangle, size/4, size/4, 100, rectangle+size/4, size/4, size/4, 100+size/4, rectangle+size/4, size/4, size/4]
+      death_cube = [100, rectangle, size4, size4, 100+size4, rectangle, size4, size4, 100, rectangle+size4, size4, size4, 100+size4, rectangle+size4, size4, size4]
+      wall_original = [250, 275, spikex, spikey, 280, 275, spikex, spikey, 310, 275, spikex, spikey, 450, 275, spikex, spikey, 465, 275, spikex, spikey, 700, 275, spikex, spikey, 719, 275, spikex, spikey, 738, 275, spikex, spikey, 880, 275, spikex, spikey, 1010, 275, spikex, spikey, 1140, 275, spikex, spikey, 1320, 275, spikex, spikey, 1350, 275, spikex, spikey, 1380, 275, spikex, spikey, 1410, 275, spikex, spikey, 1600, 275, spikex, spikey, 1750, 275, spikex, spikey];
+      wall = [250, 275, spikex, spikey, 280, 275, spikex, spikey, 310, 275, spikex, spikey, 450, 275, spikex, spikey, 465, 275, spikex, spikey, 700, 275, spikex, spikey, 719, 275, spikex, spikey, 738, 275, spikex, spikey, 880, 275, spikex, spikey, 1010, 275, spikex, spikey, 1140, 275, spikex, spikey, 1320, 275, spikex, spikey, 1350, 275, spikex, spikey, 1380, 275, spikex, spikey, 1410, 275, spikex, spikey, 1600, 275, spikex, spikey, 1750, 275, spikex, spikey];
+      document.addEventListener("keypress", function(event){
+   
+      if(event.key == "s") 
+      {
+        wall = wall_original.slice();
+        alive = false;
+        spikfart = 0;
+        spel = false;
+        block = 1950
+        line = 1320
+        document.getElementById("you_won").textContent = ""
+      }
+      if(spel == true)
+      {
+        if(rectangle == 275)
+      {
+       if(event.key == " ") 
+      {
+        vy = -5.3;
+        falling = true;
+        
+      }
+      }
+
+      }
+
+      })
+      
+       function collision()
+      {
+        for(let i = 0; i<wall.length; i+=4)
+      {
+        if(wall[i]-size<rectangle2 && rectangle2<wall[i]+wall[i+2] && rectangle>wall[i+1]-size && rectangle<wall[i+1]+wall[i+3]) return true;
+        
+      }
+
+      return false;
+
+      }
+
+       function winner()
+       {
+      
+      if(rectangle2 > block-size && rectangle2<block+20 && rectangle> 200-size && rectangle<200+100)
+      {
+        console.log("win")
+        return true;
+      }
+      return false;
+      }
+
+      function gamestart()
+      {
+        spikfart = 3;
+        spel = true;
+        document.getElementById("you_won").textContent = ""
+        alive = true
+      }
+      
+      function platform()
+      {
+        if(rectangle2 >line-size && rectangle2 < line + 100 && rectangle > 260 -size && rectangle < 260 + 10)
+      {
+        return true;
+      }
+        return false;
+      }
+
+      function dead()
+      {
+        for(let i = 0; i<wall.length; i+=4)
+      {
+        if(wall[i]-size<rectangle2 && rectangle2<wall[i]+wall[i+2] && rectangle>wall[i+1]-size && rectangle<wall[i+1]+wall[i+3]) return true;
+      }
+        return false;
+      }
+
+      function run()
+      {
+
+
+
+
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+        ctx.fillStyle="red";
+        if(alive)
+        {ctx.fillRect(100, rectangle, size , size)}
+        else
+        {
+           for(let i=0; i<death_cube.length; i+=4)
+        {
+          ctx.fillRect(death_cube[i], death_cube[i+1], death_cube[i+2], death_cube[i+3]);
+          
+        }
+        }
+        ctx.fillStyle="blue"
+        ctx.fillRect(block, 200, 20, 100)
+        ctx.fillStyle="green"
+        ctx.fillRect(line, 260, 100, 10)
+        ctx.fillStyle="black"
+        if(falling == true)
+        {
+        vy += g;
+        rectangle += vy;
+        }
+        if(rectangle >= 275)
+        {
+          falling = false;
+          rectangle = 275;
+        }
+         line -= spikfart;
+         block -= spikfart;
+        for(let i=0; i<wall.length; i+=4)
+        {
+          ctx.fillRect(wall[i], wall[i+1], wall[i+2], wall[i+3]);
+          wall[i] -= spikfart;
+        }
+
+        
+        if(collision() == true)
+        {
+          wall = wall_original.slice();
+          block = 1950
+          line = 1320
+          rectangle = 275
+          spikfart = 0;
+          spel = false
+          alive = false
+          document.getElementById("you_won").textContent = "YOU " + "LOST"
+        }
+        
+
+        if(winner() == true)
+        {
+          wall = wall_original.slice();
+          block = 1950
+          line = 1320
+          rectangle = 275
+          spikfart = 0;
+          spel = false
+          document.getElementById("you_won").textContent = "YOU " + "WON"
+        }
+        if(platform() == true)
+        {
+          rectangle = 235
+          vy = 0
+          falling = false;
+        }
+        if(platform() == false)
+        {
+          falling = true;
+        }
+
+
+        requestAnimationFrame(run);
+      }
+
+      run()
+
+
+    </script>
+
+  </body>
+</html>

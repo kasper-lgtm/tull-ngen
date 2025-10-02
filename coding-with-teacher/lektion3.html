@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>    
+    <style>
+      #box
+      {
+        display: inline-block;
+        width:50px;
+        height:50px;
+        background-color: blueviolet;
+        transition: ease 0.5s;
+      }
+
+    </style>
+
+    <script>
+      
+      let change = false;
+      function changeColor()
+      {
+        if (change == false)
+        {
+        const r = Math.floor(Math.random() * 256); // Slumptal mellan 0 och 255
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        document.getElementById('box').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        document.getElementById("box").style.width = "500px"
+        change = true;
+        }
+        else
+        {
+        document.getElementById("box").style.backgroundColor="blueviolet";
+        document.getElementById("box").style.width="50px";
+        change = false;
+        }
+
+      }
+
+    </script>
+
+  </head>
+
+  <body>
+
+    <div id="box"></div> <br>
+    <br>
+    <button onclick="changeColor()">Knapp</button>
+  </body>
+</html>

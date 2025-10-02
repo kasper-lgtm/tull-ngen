@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    
+
+    <script>
+      //argument inom paranteserna
+      function hej(namn,tal)
+      {
+        for(let i = 0; i < tal; i++)
+        {
+        console.log("hej "+ namn + "! "+ i)
+        }
+      }
+
+
+      function slumpa(tal1, tal2)
+      {
+        tal = Math.floor(Math.random()*(tal2-tal1))+tal1;
+        return tal;
+      }
+      //anroppa funktion
+      hej("fredrik", 2);
+      hej("evert", 3);
+      hej("kajsa", 1);
+      let slumpat_tal = slumpa(5,9);
+      console.log(slumpat_tal)
+    </script>
+  </body>
+</html>

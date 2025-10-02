@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+
+      let x = 0;
+      function knapptryck()
+      {
+          x++;
+          console.log("hej");
+          document.getElementById("text").textContent="antal tryck: " + x;
+          //hämntar text
+          ruttext = document.getElementById("input-text").value;
+
+            //ändra p:et
+            document.getElementById("output-text").textContent=ruttext;
+                }
+
+    </script>
+
+
+  </head>
+  <body>
+    <input id = "input-text">
+
+    <button onclick="knapptryck()">
+       knapp
+    </button>
+    <p id="text">
+      text
+    </p>
+    <p id = "output-text"></p>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    
+
+<p id="text"></p>
+    <script>
+
+      let tal = 234;
+      let sträng = "en sträng";
+      let bokstav= "ä";
+      let finns = false;
+      for(let i = 0; i<sträng.length;i++)
+      {
+        if(sträng[i]==bokstav)
+      {
+        finns = true;
+      }
+
+      //vill kolla om strängen innehåller en viss bokstav
+      }
+      if(finns==true)
+      {
+        document.getElementById("text").textContent = bokstav + " finns med i strängen: " + sträng;
+      }
+
+      else
+      {
+        document.getElementById("text").textContent = bokstav + " finns inte med i strängen: " + sträng;
+      }
+
+
+
+    </script>
+  </body>
+</html>

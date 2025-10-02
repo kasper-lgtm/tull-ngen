@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animated Rotation</title>
+</head>
+<body>
+
+<canvas id="myCanvas" width="300" height="300"></canvas>
+
+<script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    let angle = 0;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    
+    function draw() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(angle);
+        ctx.translate(-centerX, -centerY);
+        
+        // Draw triangle
+        ctx.fillStyle = 'green';
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY - 50);
+        ctx.lineTo(centerX - 30, centerY + 40);
+        ctx.lineTo(centerX + 30, centerY + 40);
+        ctx.closePath();
+        ctx.fill();
+        
+        ctx.restore();
+        
+        // Increase angle for next frame
+        angle += 0.02;
+        if (angle > Math.PI * 2) angle = 0;
+        
+        // Request next animation frame 
+        requestAnimationFrame(draw);
+    }
+    
+    // Start animation
+    draw();
+</script>
+
+</body>
+</html>
+

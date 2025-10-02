@@ -1,0 +1,138 @@
+html, body{
+    margin: 0px;
+    padding:0px;
+}
+.header{
+  height: 103px;
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  box-sizing: border-box;
+  z-index: 100;
+  background-color: white;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(223, 223, 223);
+
+}
+
+.left-section
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.logo
+{
+    height: 80px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.text-container
+{
+    display: inline-block;
+}
+.logo-blue-text
+{
+    font-family: "League Spartan", sans-serif;
+    display: block;
+    text-align: left;
+    color: #0081a2;;
+    font-size: 22px;
+    line-height: 24px;
+}
+.logo-gray-text
+{
+    font-family: "League Spartan", sans-serif;
+    display: block;
+    text-align: left;
+    font-size: 16px;
+    color: #817370;
+}
+.middle-section
+{
+    display:flex;
+    align-items: center;
+}
+.search-bar
+{
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 17px;
+    float: left;
+    border: 1px solid rgba(133, 118, 114, .2);
+    width: 75%;
+    font-size: 16px;
+}
+.search-bar-div
+{
+    width: 400px;
+    position: relative;
+}
+.search-button
+{
+    background-color: #0081a2;
+    width: 60px;
+    height: 60px;
+    border:none;
+    border-radius: 40px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+.search-button-div
+{
+    position: absolute;
+    right:30px;
+    bottom: -25px;
+    right:35px;
+    
+}
+.search-img
+{
+    height: 75%;
+    
+    
+}
+.menu-button
+{
+    background-color: #0081a2;
+    width: 60px;
+    height: 60px;
+    border:none;
+    border-radius: 40px;
+    margin-bottom: 5px;
+    margin-top:22px;
+}
+.menu-img
+{
+    height: 60%;
+}
+.right-section
+{
+    display: flex;
+    align-items: center;
+}
+.button-div
+{
+    display: flex;
+    flex-direction: column;
+    
+}
+.menu-text
+{
+    text-align: center;
+    font-family: sans-serif;
+    color:#35383b;
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+.sök-text
+{
+        text-align: center;
+    font-family: sans-serif;
+    color:#35383b;
+    font-size: 12px;
+    margin-bottom: 0px;
+}
