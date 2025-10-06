@@ -71,14 +71,27 @@ body
 
 .menu-buttons
 {
-    width: 70%;
+    width: 60%;
     height: 60px;
     background-color: white;
-    margin-top:10px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    
+    
+    
 }
 .menu-button-icons
 {
     width: 60px;
     background-color: rgb(100, 129, 162);
     height: 60px;
+}
+
+.menu-text
+{
+    font-family: sans-serif;
+    padding-left: 15%;
+    font-size: 20px;
+    margin:0px;
 }
