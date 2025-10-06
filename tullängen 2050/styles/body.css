@@ -52,8 +52,33 @@ body
 .main-info {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .school-img {
     height: 400px;
+}
+
+.about_us
+{
+    width: 60%;
+  background-color: rgb(202, 216, 224);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.menu-buttons
+{
+    width: 70%;
+    height: 60px;
+    background-color: white;
+    margin-top:10px;
+}
+.menu-button-icons
+{
+    width: 60px;
+    background-color: rgb(100, 129, 162);
+    height: 60px;
 }
