@@ -8,4 +8,7 @@
 6. gör ett sätt att vinna check
 7. gör en platform check
 8. gör bannan längre check
-9. cuben exploderar när den nuddar spik 
+9. cuben exploderar när den nuddar spik check
+10. gör en ny knapp  check
+11. score
+12. nya bannor

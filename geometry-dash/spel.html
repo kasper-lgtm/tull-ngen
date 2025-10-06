@@ -3,6 +3,11 @@
   <head>
     <title>geometrodash</title>
     <style>
+      p 
+      {
+        font-family: Arial;
+        color: brown;
+      }
       .spelytan{
         display: flex;
         justify-content: center;
@@ -28,10 +33,10 @@
       <canvas id="spelyta" width="2000" height="300" style="border: 1px solid black;"></canvas>
     </div>
     <div class="cool">
-    <button id="play" onclick="gamestart()">press to play</button>
+    <p>press D to start</p>
     <br>
-    <p>press s to restart</p>
-    <p class="winer" id="you_won"></p>
+    <p>press S to restart</p>
+    
     </div>
 
     
@@ -51,18 +56,30 @@
       let score = 0
       let block = 1950
       let line = 1320
-      let alive = false
-      let size4 = size/2
-      death_cube_original = [100, rectangle, size/4, size/4, 100+size/4, rectangle, size/4, size/4, 100, rectangle+size/4, size/4, size/4, 100+size/4, rectangle+size/4, size/4, size/4]
+      let alive = true
+      let size4 = size/4
+      death_cube_original = [100, rectangle, size4, size4, 100+size4, rectangle, size4, size4, 100, rectangle+size4, size4, size4, 100+size4, rectangle+size4, size4, size4,]
       death_cube = [100, rectangle, size4, size4, 100+size4, rectangle, size4, size4, 100, rectangle+size4, size4, size4, 100+size4, rectangle+size4, size4, size4]
       wall_original = [250, 275, spikex, spikey, 280, 275, spikex, spikey, 310, 275, spikex, spikey, 450, 275, spikex, spikey, 465, 275, spikex, spikey, 700, 275, spikex, spikey, 719, 275, spikex, spikey, 738, 275, spikex, spikey, 880, 275, spikex, spikey, 1010, 275, spikex, spikey, 1140, 275, spikex, spikey, 1320, 275, spikex, spikey, 1350, 275, spikex, spikey, 1380, 275, spikex, spikey, 1410, 275, spikex, spikey, 1600, 275, spikex, spikey, 1750, 275, spikex, spikey];
       wall = [250, 275, spikex, spikey, 280, 275, spikex, spikey, 310, 275, spikex, spikey, 450, 275, spikex, spikey, 465, 275, spikex, spikey, 700, 275, spikex, spikey, 719, 275, spikex, spikey, 738, 275, spikex, spikey, 880, 275, spikex, spikey, 1010, 275, spikex, spikey, 1140, 275, spikex, spikey, 1320, 275, spikex, spikey, 1350, 275, spikex, spikey, 1380, 275, spikex, spikey, 1410, 275, spikex, spikey, 1600, 275, spikex, spikey, 1750, 275, spikex, spikey];
+      deathspeeds = [Math.floor(Math.random() * 7) -3, Math.floor(Math.random() * 7) -3,2,2, Math.floor(Math.random() * 7) -3, Math.floor(Math.random() * 7) -3,2,2, Math.floor(Math.random() * 7) -3, Math.floor(Math.random() * 7) -3,2,2, Math.floor(Math.random() * 7) -3, Math.floor(Math.random() * 7) -3,2,2]
       document.addEventListener("keypress", function(event){
-   
+      if(event.key == "d")
+      {
+        line = 1320
+        spikfart = 3;
+        spel = true;
+        
+        alive = true
+        wall = wall_original.slice();
+        block = 1950
+      }
       if(event.key == "s") 
       {
+        line = 1320
+        block = 1950
         wall = wall_original.slice();
-        alive = false;
+        alive = true;
         spikfart = 0;
         spel = false;
         block = 1950
@@ -71,7 +88,7 @@
       }
       if(spel == true)
       {
-        if(rectangle == 275)
+        if(rectangle >= 270)
       {
        if(event.key == " ") 
       {
@@ -80,7 +97,6 @@
         
       }
       }
-
       }
 
       })
@@ -97,6 +113,26 @@
 
       }
 
+      function collision_death_x(i)
+      {
+        
+      if(death_cube[i]>canvas.width-size4 || death_cube[i]<0) 
+      {
+        console.log(death_cube[i])
+        return true;
+      }
+      
+      return false;
+
+      }
+      function collision_death_y(i)
+      {
+        if(death_cube[i+1]> canvas.height-size4 || death_cube[i+1] < 0 ) return true;
+
+        return false;
+      }
+
+
        function winner()
        {
       
@@ -110,10 +146,13 @@
 
       function gamestart()
       {
+        line = 1320
         spikfart = 3;
         spel = true;
         document.getElementById("you_won").textContent = ""
         alive = true
+        wall = wall_original.slice();
+        block = 1950
       }
       
       function platform()
@@ -133,6 +172,7 @@
       }
         return false;
       }
+      
 
       function run()
       {
@@ -149,10 +189,10 @@
            for(let i=0; i<death_cube.length; i+=4)
         {
           ctx.fillRect(death_cube[i], death_cube[i+1], death_cube[i+2], death_cube[i+3]);
-          
+
         }
         }
-        ctx.fillStyle="blue"
+        ctx.fillStyle="white"
         ctx.fillRect(block, 200, 20, 100)
         ctx.fillStyle="green"
         ctx.fillRect(line, 260, 100, 10)
@@ -174,30 +214,66 @@
           ctx.fillRect(wall[i], wall[i+1], wall[i+2], wall[i+3]);
           wall[i] -= spikfart;
         }
-
         
-        if(collision() == true)
+        for(let i=0; i<death_cube.length; i+=4)
         {
-          wall = wall_original.slice();
+
+            if(collision_death_x(i) == true)
+        {
+          deathspeeds[i] = deathspeeds[i]*(-1)
+        }
+        }
+      
+                for(let i=0; i<death_cube.length; i+=4)
+        {
+
+            if(collision_death_y(i) == true)
+        {
+          deathspeeds[i+1] = deathspeeds[i+1]*(-1)
+        }
+        }
+        if(collision() == true)
+        { 
+          ctx.font = "100px arial";
+          ctx.fillStyle = "brown"
+          ctx.fillText("YOU LOST THE GAME", 500, 100);
           block = 1950
-          line = 1320
           rectangle = 275
           spikfart = 0;
           spel = false
           alive = false
-          document.getElementById("you_won").textContent = "YOU " + "LOST"
+          
         }
         
 
+        //death cube animation
+           for(let i=0; i<death_cube.length; i+=4)
+        {
+        if(alive == false)
+        {
+          death_cube[i] -= deathspeeds[i]
+          death_cube[i+1] -= deathspeeds[i+1]
+        }
+        }
+
+        //death cube respawn
+
+        if(alive == true)
+        {
+          death_cube = death_cube_original.slice();
+        }
+
+
+
         if(winner() == true)
         {
-          wall = wall_original.slice();
-          block = 1950
-          line = 1320
+          ctx.font = "100px arial";
+          ctx.fillStyle = "brown"
+          ctx.fillText("YOU WON THE GAME", 500, 100);
           rectangle = 275
           spikfart = 0;
           spel = false
-          document.getElementById("you_won").textContent = "YOU " + "WON"
+          
         }
         if(platform() == true)
         {
@@ -211,7 +287,7 @@
         }
 
 
-        requestAnimationFrame(run);
+        requestAnimationFrame(run)
       }
 
       run()
