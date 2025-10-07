@@ -128,3 +128,10 @@ body
     font-size: 20px;
     font:bolder;
 }
+
+.icons {
+    width: 15%;
+    margin-left:60px;
+    margin-right: 60px;
+    cursor: pointer;
+}
