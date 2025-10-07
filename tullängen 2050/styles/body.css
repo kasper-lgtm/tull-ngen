@@ -103,3 +103,15 @@ body
     font-size: 20px;
     font:bolder;
 }
+
+.nyt_program_bild_div
+{
+    width: 1000px;
+    display: flex;
+    justify-content: right;
+}
+
+.nyt_program_bild
+{
+    width: 400px;
+}
