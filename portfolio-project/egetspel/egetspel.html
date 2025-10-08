@@ -52,6 +52,7 @@
     </canvas>
 
      <p id="best-tid"> </p>
+     <p id="win-text"> </p>
     </div>
     <br>
     <a class="home" href="../index.html" >Home</a>
@@ -61,6 +62,7 @@
       let y = 25;
       let vx = 0;
       let vy = 0;
+      let best = 10000;
       let size = 50;
  let lista = [200,200];
       // [x,y,bredd,höjd]
@@ -140,11 +142,7 @@
 
       ctx.fillStyle="blue";
       ctx.fillRect(650,650,size,size);
-        if(win() == true)
-      {
-
-      }
-
+   
         if(collision() == true)
       {
         vx = vx*(-1);
@@ -156,8 +154,9 @@
         vy= 0;
         x = 25;
         y = 25;
+        if(Date.now()-starttid < best) best = Date.now()-starttid;
         starttid = Date.now();   
-        document.getElementById("best-tid").textContent = "TID! " + " = " + tid/1000 + "s"
+        document.getElementById("best-tid").textContent = "TID! " + " = " + best/1000 + "s"
         document.getElementById("win-text").textContent = "WIN!"
       }
       

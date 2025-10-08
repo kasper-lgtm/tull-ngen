@@ -26,6 +26,11 @@
        button{
         width: 100px;
        }
+       #score
+       {
+        color: blue;
+        font-size: 30px;
+       }
     </style>
   </head>
   <body>
@@ -35,7 +40,7 @@
     <div class="cool">
     <p>press D to start</p>
     <br>
-    <p>press S to restart</p>
+    <p id="score"></p>
     
     </div>
 
@@ -58,6 +63,8 @@
       let line = 1320
       let alive = true
       let size4 = size/4
+      let best = 0
+      let starttid = Date.now()
       death_cube_original = [100, rectangle, size4, size4, 100+size4, rectangle, size4, size4, 100, rectangle+size4, size4, size4, 100+size4, rectangle+size4, size4, size4,]
       death_cube = [100, rectangle, size4, size4, 100+size4, rectangle, size4, size4, 100, rectangle+size4, size4, size4, 100+size4, rectangle+size4, size4, size4]
       wall_original = [250, 275, spikex, spikey, 280, 275, spikex, spikey, 310, 275, spikex, spikey, 450, 275, spikex, spikey, 465, 275, spikex, spikey, 700, 275, spikex, spikey, 719, 275, spikex, spikey, 738, 275, spikex, spikey, 880, 275, spikex, spikey, 1010, 275, spikex, spikey, 1140, 275, spikex, spikey, 1320, 275, spikex, spikey, 1350, 275, spikex, spikey, 1380, 275, spikex, spikey, 1410, 275, spikex, spikey, 1600, 275, spikex, spikey, 1750, 275, spikex, spikey];
@@ -69,10 +76,10 @@
         line = 1320
         spikfart = 3;
         spel = true;
-        
         alive = true
         wall = wall_original.slice();
         block = 1950
+        starttid = Date.now()
       }
       if(event.key == "s") 
       {
@@ -84,7 +91,7 @@
         spel = false;
         block = 1950
         line = 1320
-        
+        starttid = Date.now()
       }
       if(spel == true)
       {
@@ -149,7 +156,6 @@
         line = 1320
         spikfart = 3;
         spel = true;
-        document.getElementById("you_won").textContent = ""
         alive = true
         wall = wall_original.slice();
         block = 1950
@@ -239,12 +245,21 @@
           ctx.font = "100px arial";
           ctx.fillStyle = "brown"
           ctx.fillText("YOU LOST THE GAME", 500, 100);
+          ctx.fillStyle = "red"
+          ctx.font = "40px arial"
+          ctx.fillText("Press S to try again?", 850, 150);
           block = 1950
           rectangle = 275
           spikfart = 0;
           spel = false
           alive = false
           
+          if(Date.now()-starttid > best)
+        {
+          best = Date.now()-starttid;
+          document.getElementById("score").textContent = "High score: " + best
+        }
+        starttid = Date.now()
         }
         
 
@@ -263,6 +278,7 @@
         if(alive == true)
         {
           death_cube = death_cube_original.slice();
+          
         }
 
 
@@ -272,10 +288,19 @@
           ctx.font = "100px arial";
           ctx.fillStyle = "brown"
           ctx.fillText("YOU WON THE GAME", 500, 100);
+          ctx.fillStyle = "green"
+          ctx.font = "40px arial"
+          ctx.fillText("Press S to try again?", 850, 150);
           rectangle = 275
           spikfart = 0;
           spel = false
-          
+          wall=wall_original.slice();
+          if(Date.now()-starttid > best)
+        {
+          best = Date.now()-starttid;
+          document.getElementById("score").textContent = "High score: " + best
+        }
+          starttid = Date.now()
         }
         if(platform() == true)
         {
@@ -286,11 +311,13 @@
         if(platform() == false)
         {
           falling = true;
-        }
-
+        } 
+        
 
         requestAnimationFrame(run)
       }
+      
+      starttid = Date.now();
 
       run()
 
