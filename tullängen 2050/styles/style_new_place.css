@@ -1,0 +1,82 @@
+body
+{
+    background-color: #F4F3F1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 500px;
+}
+
+.text_rundtur
+{
+    margin-top: 30px;
+    font-family: "League Spartan", sans-serif;
+    display: block;
+    text-align: left;
+    color: #0081a2;
+    font-size: 30px;
+    line-height: 24px;
+    width: 69%;
+    
+}
+
+.holder-div
+{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.contact-and-listen {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: dashed 2px;
+    border-bottom: dashed 2px;
+}
+
+.info-text {
+    color: rgb(61, 49, 49);
+    font-family: "League Spartan",sans-serif;
+    margin-left: 10px;
+}
+
+
+
+.info-img
+{
+    height: 26px;
+}
+.info
+{
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ align-items: center;
+ margin-left: 10px;
+ margin-right: 10px;
+}
+
+.rundtur-div
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.arrows {
+    width: 6%;
+    margin-left: 40px;
+    margin-right: 40px;
+    cursor: pointer;
+}
+
+.ai_blask
+{
+    width: 70%;
+    border: solid #0081a2 10px ;
+}

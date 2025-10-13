@@ -2,13 +2,116 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles/style_new_place.css">
+        <link rel="stylesheet" href="styles/header.css">
+        <!-- <link rel="stylesheet" href="styles/body.css"> -->
     </head>
     <body>
-        <div>
-            <img src="imgs/new_place_img/new_place.png" >
-            <div class="intro_absolute_div">
+<div class="header">
+    <div class="left-section">
+      <div>
+        <img class="logo" src="imgs/tullängens-logga.png">
+      </div>
+      <div class="text-container">
+        <div class="logo-blue-text"><b>Tullängsgymnasiet.</b></div>
+        <div class="logo-gray-text"> <b>En del av Örebro kommun</b> </div>
+      </div>
 
-            </div>
+    </div>
+
+    <div class="middle-section">
+      <div class="search-bar-div">
+        <input class="search-bar" type="text" placeholder="Hej! vad letar du efter?">
+
+        <div class="search-button-div">
+          <button class="search-button">
+            <img class="search-img" src="imgs/search-icon.png">
+          </button>
+          <div class="sök-text">
+            S&Ouml;K
+          </div>
         </div>
-    </body>
+      </div>
+    </div>
+
+
+    <div class="right-section">
+      <div class="button-div">
+        <button class="menu-button">
+          <img class="menu-img" src="imgs/menu-icon.png">
+        </button>
+        <div class="menu-text">
+          MENY
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text_rundtur">
+     Rundtur i skolans lokaler
+  </div>
+
+    <div class="holder-div">
+    <div class="contact-and-listen">
+      <div class="info">
+        <img src="imgs/speech-bubble-icon.png" class="info-img">
+        <p class="info-text">
+          Kontakta oss</p>
+      </div>
+      <div class="info">
+        <img src="imgs/Sound-icon.png" class="info-img">
+        <p class="info-text">
+          Lyssna</p>
+      </div>
+    </div>
+
+    <div class="rundtur-div">
+      <img onclick="arrowClicked(this.id)" id="left-arrow" class="arrows" src="imgs/new_place_img/arrow-left.png">
+
+      <img id="rundtur-img" class="ai_blask" src="imgs/new_place_img/img1.png">
+        
+      <img onclick="arrowClicked(this.id)" id="right-arrow" class="arrows" src="imgs/new_place_img/arrow-right.png">
+    </div>
+
+
+
+
+    <script>
+      const imgTable = 
+      [
+        "imgs/new_place_img/img1.png",
+        "imgs/new_place_img/img2.png",
+        "imgs/new_place_img/img3.png",
+        "imgs/new_place_img/img4.png",
+        "imgs/new_place_img/img5.png"
+      ]
+
+      let currentImg = 0
+
+      function arrowClicked(arrowId)
+      {
+        if (arrowId == "left-arrow")
+      {
+        if (currentImg == 0)
+      {
+        currentImg = 5
+      }
+
+      currentImg -= 1
+      document.getElementById("rundtur-img").src = imgTable[currentImg]
+      }
+
+
+      if (arrowId == "right-arrow")
+      {
+        if (currentImg == 4)
+      {
+        currentImg = -1
+      }
+
+      currentImg += 1
+      document.getElementById("rundtur-img").src = imgTable[currentImg]
+      }
+      }
+    </script>
+  </body>
 </html>
