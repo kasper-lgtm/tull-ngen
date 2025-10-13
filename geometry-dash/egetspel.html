@@ -42,6 +42,7 @@
     <p>press D to start</p>
     <br>
     <p id="score"></p>
+    <p id="death_count"></p>
     
     </div>
 
@@ -67,11 +68,13 @@
       let best = 0
       let starttid = Date.now()
       let first = true
+      let died = false;
+      let deaths = 0;
       
       death_cube_original = [100, rectangle, size4, size4, 100+size4, rectangle, size4, size4, 100, rectangle+size4, size4, size4, 100+size4, rectangle+size4, size4, size4,]
       death_cube = [100, rectangle, size4, size4, 100+size4, rectangle, size4, size4, 100, rectangle+size4, size4, size4, 100+size4, rectangle+size4, size4, size4]
-      wall_original = [250, 275, spikex, spikey, 280, 275, spikex, spikey, 310, 275, spikex, spikey, 450, 275, spikex, spikey, 465, 275, spikex, spikey, 700, 275, spikex, spikey, 719, 275, spikex, spikey, 738, 275, spikex, spikey, 880, 275, spikex, spikey, 1010, 275, spikex, spikey, 1140, 275, spikex, spikey, 1320, 275, spikex, spikey, 1350, 275, spikex, spikey, 1380, 275, spikex, spikey, 1410, 275, spikex, spikey, 1600, 275, spikex, spikey, 1750, 275, spikex, spikey, 1800, 275, spikex, spikey, 2000, 275, spikex, spikey, 2110, 275, spikex, spikey, 2210, 275, spikex, spikey, 2330, 280, spikex, spikey, 2490, 390, spikex, spikey, 2600, 265, spikex, spikey];
-      wall = [250, 275, spikex, spikey, 280, 275, spikex, spikey, 310, 275, spikex, spikey, 450, 275, spikex, spikey, 465, 275, spikex, spikey, 700, 275, spikex, spikey, 719, 275, spikex, spikey, 738, 275, spikex, spikey, 880, 275, spikex, spikey, 1010, 275, spikex, spikey, 1140, 275, spikex, spikey, 1320, 275, spikex, spikey, 1350, 275, spikex, spikey, 1380, 275, spikex, spikey, 1410, 275, spikex, spikey, 1600, 275, spikex, spikey, 1750, 275, spikex, spikey, 1800, 275, spikex, spikey, 2000, 275, spikex, spikey, 2110, 275, spikex, spikey, 2210, 275, spikex, spikey, 2330, 280, spikex, spikey, 2490, 390, spikex, spikey, 2600, 265, spikex, spikey];
+      wall_original = [250, 275, spikex, spikey, 280, 275, spikex, spikey, 310, 275, spikex, spikey, 450, 275, spikex, spikey, 465, 275, spikex, spikey, 700, 275, spikex, spikey, 719, 275, spikex, spikey, 738, 275, spikex, spikey, 880, 275, spikex, spikey, 1010, 275, spikex, spikey, 1140, 275, spikex, spikey, 1320, 275, spikex, spikey, 1350, 275, spikex, spikey, 1380, 275, spikex, spikey, 1410, 275, spikex, spikey, 1600, 275, spikex, spikey, 1750, 275, spikex, spikey, 1800, 275, spikex, spikey, 2000, 275, spikex, spikey, 2110, 275, spikex, spikey, 2250, 275, spikex, spikey, 2350, 280, spikex, spikey, 2490, 390, spikex, spikey, 2600, 265, spikex, spikey];
+      wall = [250, 275, spikex, spikey, 280, 275, spikex, spikey, 310, 275, spikex, spikey, 450, 275, spikex, spikey, 465, 275, spikex, spikey, 700, 275, spikex, spikey, 719, 275, spikex, spikey, 738, 275, spikex, spikey, 880, 275, spikex, spikey, 1010, 275, spikex, spikey, 1140, 275, spikex, spikey, 1320, 275, spikex, spikey, 1350, 275, spikex, spikey, 1380, 275, spikex, spikey, 1410, 275, spikex, spikey, 1600, 275, spikex, spikey, 1750, 275, spikex, spikey, 1800, 275, spikex, spikey, 2000, 275, spikex, spikey, 2110, 275, spikex, spikey, 2250, 275, spikex, spikey, 2350, 280, spikex, spikey, 2490, 390, spikex, spikey, 2600, 265, spikex, spikey];
       deathspeeds = [Math.floor(Math.random() * 7) -3, Math.floor(Math.random() * 7) -3,2,2, Math.floor(Math.random() * 7) -3, Math.floor(Math.random() * 7) -3,2,2, Math.floor(Math.random() * 7) -3, Math.floor(Math.random() * 7) -3,2,2, Math.floor(Math.random() * 7) -3, Math.floor(Math.random() * 7) -3,2,2]
       document.addEventListener("keypress", function(event){
       if(event.key == "d")
@@ -84,6 +87,7 @@
         block = 2500
         starttid = Date.now()
         first = false;
+        died=false;
       }
       if(event.key == "s") 
       {
@@ -95,6 +99,7 @@
         spel = false;
         first = true
         line = 1320
+        died=false;
         starttid = Date.now()
       }
       if(spel == true)
@@ -214,7 +219,7 @@
 
         }
         }
-        ctx.fillStyle="white"
+        ctx.fillStyle="rgb(57, 255, 20)"
         ctx.fillRect(block, 200, 20, 100)
         ctx.fillStyle="green"
         ctx.fillRect(line, 260, 100, 10)
@@ -266,8 +271,13 @@
           rectangle = 275
           spikfart = 0;
           spel = false
+          if(died == false)
+          {
+            died = true;
+            deaths += 1;
+            document.getElementById("death_count").textContent = deaths + " Deaths"
+          }
           alive = false
-          
           if(Date.now()-starttid > best)
         {
           best = Date.now()-starttid;
@@ -276,7 +286,7 @@
         starttid = Date.now()
         }
         
-
+        
         //death cube animation
            for(let i=0; i<death_cube.length; i+=4)
         {
