@@ -33,7 +33,7 @@
        }
     </style>
   </head>
-  <body onload ="startgame()">
+  <body>
     
     <div class="spelytan">    
       <canvas id="spelyta" width="2000" height="300" style="border: 1px solid black;"></canvas>
@@ -82,6 +82,7 @@
         wall = wall_original.slice();
         block = 1950
         starttid = Date.now()
+        first = false;
       }
       if(event.key == "s") 
       {
@@ -181,22 +182,23 @@
         return false;
       }
       
-      function startgame()
+
+
+      function run()
       {
-        ctx.font = "100px arial";
+        console.log(first)
+        
+         ctx.clearRect(0,0,canvas.width,canvas.height)
+        if(first == true)
+      {
+        ctx.font = "80px arial";
         ctx.fillStyle = "blue"
         ctx.fillText("PRESS D TO START GAME", 500, 100)
       }
 
-      function run()
-      {
-
-        
 
 
-
-
-        ctx.clearRect(0,0,canvas.width,canvas.height)
+       
         ctx.fillStyle="red";
         if(alive)
         {ctx.fillRect(100, rectangle, size , size)}
