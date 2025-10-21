@@ -9,6 +9,7 @@
         color: brown;
       }
       .spelytan{
+      margin-top: 300px;
         display: flex;
         justify-content: center;
       }
@@ -70,7 +71,12 @@
       let first = true
       let died = false;
       let deaths = 0;
-      
+      let img = new Image();
+      img.src ="bilder/cube.png";
+      let spikeimg = new Image();
+      spikeimg.src ="bilder/spikar.png";
+      let platformbild = new Image();
+      platformbild.src = "bilder/platform.png";
       death_cube_original = [100, rectangle, size4, size4, 100+size4, rectangle, size4, size4, 100, rectangle+size4, size4, size4, 100+size4, rectangle+size4, size4, size4,]
       death_cube = [100, rectangle, size4, size4, 100+size4, rectangle, size4, size4, 100, rectangle+size4, size4, size4, 100+size4, rectangle+size4, size4, size4]
       wall_original = [250, 275, spikex, spikey, 280, 275, spikex, spikey, 310, 275, spikex, spikey, 450, 275, spikex, spikey, 465, 275, spikex, spikey, 700, 275, spikex, spikey, 719, 275, spikex, spikey, 738, 275, spikex, spikey, 880, 275, spikex, spikey, 1010, 275, spikex, spikey, 1140, 275, spikex, spikey, 1320, 275, spikex, spikey, 1350, 275, spikex, spikey, 1380, 275, spikex, spikey, 1410, 275, spikex, spikey, 1600, 275, spikex, spikey, 1750, 275, spikex, spikey, 1800, 275, spikex, spikey, 2000, 275, spikex, spikey, 2110, 275, spikex, spikey, 2250, 275, spikex, spikey, 2350, 280, spikex, spikey, 2490, 390, spikex, spikey, 2600, 265, spikex, spikey];
@@ -193,8 +199,8 @@
       function run()
       {
         var gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-        gradient.addColorStop(1, "rgb(57, 255, 20)");
-        gradient.addColorStop(0, "rgb(173, 216, 230)");
+        gradient.addColorStop(0, "rgb(57, 255, 20)");
+        gradient.addColorStop(1, "rgb(173, 216, 230)");
         ctx.fillStyle=gradient;
         ctx.fillRect(0,0,canvas.width,canvas.height)
 
@@ -204,13 +210,13 @@
         ctx.fillStyle = "blue"
         ctx.fillText("PRESS D TO START GAME", 500, 100)
       }
-
+      
 
 
        
         ctx.fillStyle="red";
         if(alive)
-        {ctx.fillRect(100, rectangle, size , size)}
+        {ctx.drawImage(img, 100, rectangle)}
         else
         {
            for(let i=0; i<death_cube.length; i+=4)
@@ -222,24 +228,25 @@
         ctx.fillStyle="rgb(57, 255, 20)"
         ctx.fillRect(block, 200, 20, 100)
         ctx.fillStyle="green"
-        ctx.fillRect(line, 260, 100, 10)
+        ctx.drawImage(platformbild ,line, 260)
         ctx.fillStyle="black"
         if(falling == true)
         {
         vy += g;
         rectangle += vy;
         }
-        if(rectangle >= 275)
+        if(rectangle >= 277)
         {
           falling = false;
-          rectangle = 275;
+          rectangle = 277;
         }
          line -= spikfart;
          block -= spikfart;
         for(let i=0; i<wall.length; i+=4)
         {
-          ctx.fillRect(wall[i], wall[i+1], wall[i+2], wall[i+3]);
+          //ctx.fillRect(wall[i], wall[i+1], wall[i+2], wall[i+3]);
           wall[i] -= spikfart;
+          ctx.drawImage(spikeimg,wall[i]-5,wall[i+1])
         }
         
         for(let i=0; i<death_cube.length; i+=4)

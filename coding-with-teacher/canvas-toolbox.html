@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+<title>Canvas Game Toolbox</title>
+
+</head>
+<body>
+<canvas id="game" width="800" height="600"></canvas>
+<script>
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+
+    /* =====================
+    1) Grundloop
+    ===================== */
+
+    function loop() {
+    
+    draw(); //Någon funktion som ritar upp allt det man vill ha.
+    requestAnimationFrame(loop);
+    }
+    
+    loop();
+
+    /* =====================
+    2) Tangentbord
+    ===================== */
+    const keys = {};
+    window.addEventListener("keydown", e => keys[e.key] = true);
+    window.addEventListener("keyup",   e => keys[e.key] = false);
+
+
+    /* =====================
+    2.5) Mus
+    ===================== */
+    function getMousePos(canvas, event) {
+    const rect = canvas.getBoundingClientRect(); // var canvas ligger på sidan
+    return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top
+    };
+    }
+
+    // Lägga till eventlistener som anropar funktionen ovan.
+    canvas.addEventListener("mousemove", e => {
+    const pos = getMousePos(canvas, e);
+    console.log("Mouse:", pos.x, pos.y);
+    });
+
+    //Musklick
+    canvas.addEventListener("click", e => {
+    const pos = getMousePos(canvas, e);
+    console.log("Clicked at", pos.x, pos.y);
+    });
+
+    /* =====================
+    3) Former
+    ===================== */
+    function rect(x,y,w,h,color="white") {
+    ctx.fillStyle = color;
+    ctx.fillRect(x,y,w,h);
+    }
+
+    function circle(x,y,r,color="white") {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(x,y,r,0,Math.PI*2);
+    ctx.fill();
+    }
+
+    function line(x1,y1,x2,y2,color="white",width=2) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+    ctx.beginPath();
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    ctx.stroke();
+    }
+
+    /* =====================
+    4) Text
+    ===================== */
+    function drawText(txt,x,y,color="white",size=20) {
+    ctx.fillStyle = color;
+    ctx.font = size+"px Arial";
+    ctx.fillText(txt,x,y);
+    }
+
+    /* =====================
+    5) Spelare & styrning
+    ===================== */
+    const player = {x:100, y:100, w:40, h:40, speed:200};
+
+    function update(dt) {
+    if(keys["ArrowUp"])    player.y -= player.speed * dt;
+    if(keys["ArrowDown"])  player.y += player.speed * dt;
+    if(keys["ArrowLeft"])  player.x -= player.speed * dt;
+    if(keys["ArrowRight"]) player.x += player.speed * dt;
+    }
+
+    function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // rita former
+    rect(player.x, player.y, player.w, player.h, "deepskyblue");
+    circle(400,300,40,"tomato");
+    line(0,0,800,600,"lime");
+
+    // text
+    drawText("Canvas Toolbox", 20,40,"yellow",24);
+    }
+</script>
+</body>
+</html>
