@@ -110,9 +110,8 @@
       }
       if(spel == true)
       {
-        if(rectangle >= 270)
-      {
-       if(event.key == " ") 
+      
+       if(event.key == " " && falling == false)
       {
         vy = -5.3;
         falling = true;
@@ -121,7 +120,7 @@
       }
       }
 
-      })
+      )
       
        function collision()
       {
@@ -198,6 +197,7 @@
 
       function run()
       {
+        console.log(falling);
         var gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
         gradient.addColorStop(0, "rgb(57, 255, 20)");
         gradient.addColorStop(1, "rgb(173, 216, 230)");
@@ -333,9 +333,11 @@
         }
           starttid = Date.now()
         }
+        if(rectangle2< line+platformbild && rectangle2> line)
+        {
         if(platform() == true)
         {
-          rectangle = 235
+          //rectangle = 235
           vy = 0
           falling = false;
         }
@@ -343,7 +345,7 @@
         {
           falling = true;
         } 
-        
+      }
 
         requestAnimationFrame(run)
       }

@@ -11,4 +11,5 @@
 9. cuben exploderar när den nuddar spik check
 10. gör en ny knapp  check
 11. score check
-12. gör bannan längre
+12. gör bannan längre check
+13.
